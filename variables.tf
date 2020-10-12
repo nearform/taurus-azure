@@ -21,7 +21,7 @@ variable "aks_dns_prefix" {
 variable cluster_name {
 }
 variable acr_name {
-  description = "5 or more alphanumeric characters"
+  description = "5 or more alphanumeric characters and globally unique"
 }
 variable log_analytics_workspace_name {
     default = "testLogAnalyticsWorkspaceName"
@@ -32,4 +32,9 @@ variable log_analytics_workspace_location {
 # refer https://azure.microsoft.com/pricing/details/monitor/ for log analytics pricing
 variable log_analytics_workspace_sku {
     default = "PerGB2018"
+}
+variable "storagename" {
+}
+variable "default_node_pool_vm_size" {
+  default = "Standard_DS2_v2"
 }
