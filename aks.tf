@@ -72,12 +72,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         Environment = "Development"
     }
 }
-resource "azurerm_kubernetes_cluster_node_pool" "user" {
+resource "azurerm_kubernetes_cluster_node_pool" "user_pool" {
     name = "user"
     kubernetes_cluster_id = azurerm_kubernetes_cluster.k8s.id
     vm_size = "Standard_DS2_v2"
     node_count = 1
-    vnet_subnet_id = azurerm_virtual_network.default.subnet.id
+    vnet_subnet_id = azurerm_subnet.internal.id
 }
 data "azurerm_public_ip" "pub" {
   name                = reverse(split("/", tolist(azurerm_kubernetes_cluster.k8s.network_profile.0.load_balancer_profile.0.effective_outbound_ips)[0]))[0]

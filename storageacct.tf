@@ -1,5 +1,5 @@
 resource "random_id" "random" {
-    byte_length = 8
+    byte_length = 1
 }
 
 resource "azurerm_storage_account" "default" {

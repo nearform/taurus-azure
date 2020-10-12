@@ -14,7 +14,7 @@ variable "agent_count" {
     default = 3
 }
 variable "ssh_public_key" {
-    default = "~/.ssh/id_rsa.pub"
+    default = "id_rsa.pub"
 }
 variable "aks_dns_prefix" {
 }

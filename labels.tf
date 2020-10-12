@@ -9,6 +9,5 @@ module "labels" {
 
   tags = {
     Environment = var.environment
-    Project     = var.full_name
   }
 }
