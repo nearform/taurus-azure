@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "prod" {
+resource "azurerm_resource_group" "store" {
   name     = "${module.labels.id}-rg"
   location = var.location
   }
