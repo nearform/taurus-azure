@@ -39,7 +39,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
 
     tags = {
-        Environment = "Development"
+        Environment = var.environment
     }
 }
 resource "azurerm_kubernetes_cluster_node_pool" "user_pool" {

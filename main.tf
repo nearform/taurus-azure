@@ -5,3 +5,9 @@ provider "azurerm" {
   subscription_id = var.sub_id
   features {}
 }
+resource "random_string" "random" {
+  length = 8
+  min_lower = 8
+  special = false
+  override_special = "/@£$"
+}

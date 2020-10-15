@@ -31,3 +31,6 @@ output "id" {
 output "cluster_egress_ip" {
   value = data.azurerm_public_ip.pub.ip_address
 }
+output "keyvault_id" {
+  value = azurerm_key_vault.kv.id
+}

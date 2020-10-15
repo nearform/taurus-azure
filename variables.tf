@@ -20,7 +20,7 @@ variable "aks_dns_prefix" {
 }
 variable cluster_name {
 }
-variable acr_name {
+variable acr_name_prefix {
   description = "5 or more alphanumeric characters and globally unique"
 }
 variable log_analytics_workspace_name {
@@ -33,8 +33,12 @@ variable log_analytics_workspace_location {
 variable log_analytics_workspace_sku {
     default = "PerGB2018"
 }
-variable "storagename" {
+variable "storagename_prefix" {
+    description = "5 or more alphanumeric characters and globally unique"
 }
 variable "default_node_pool_vm_size" {
   default = "Standard_DS2_v2"
+}
+variable "db_name_prefix" {
+  description = "5 or more alphanumeric characters and globally unique"
 }
