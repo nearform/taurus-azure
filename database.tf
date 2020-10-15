@@ -25,14 +25,14 @@ resource "azurerm_postgresql_database" "db" {
   collation           = "English_United States.1252"
 }
 resource "azurerm_private_endpoint" "example" {
-  name                = "${random_string.random.result}-endpoint"
-  location            = var.location
+  name = "${var.db_name_prefix}-${random_string.random.result}-endpoint"
+  location = var.location
   resource_group_name = azurerm_resource_group.store.name
-  subnet_id           = azurerm_subnet.k8s-internal.id
-
+  subnet_id = azurerm_subnet.k8s-internal.id
   private_service_connection {
     name                           = "${random_string.random.result}-privateserviceconnection"
     private_connection_resource_id = azurerm_postgresql_server.dbServer.id
     subresource_names              = [ "postgresqlServer" ]
     is_manual_connection           = false
   }
+}
