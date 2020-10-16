@@ -5,6 +5,7 @@ resource "azurerm_virtual_network" "k8s" {
   address_space = [
     "10.4.0.0/16"]
   location = var.location
+  depends_on = [azurerm_resource_group.k8s]
   }
 
 resource "azurerm_subnet" "k8s-internal" {
