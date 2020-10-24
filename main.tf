@@ -21,3 +21,12 @@ provider "kubernetes" {
   client_key             = base64decode(azurerm_kubernetes_cluster.k8s.kube_admin_config.0.client_key)
   cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.k8s.kube_admin_config.0.cluster_ca_certificate)
 }
+provider "postgresql" {
+  host            = azurerm_postgresql_server.dbServer.fqdn
+  port            = 5432
+  database        = azurerm_postgresql_database.db.name
+  username        = azurerm_key_vault_secret.db_admin.name
+  password        = azurerm_key_vault_secret.db_admin.value
+  sslmode         = "require"
+  connect_timeout = 15
+}

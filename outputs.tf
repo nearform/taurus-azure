@@ -10,19 +10,23 @@ output "host" {
 output "cluster_egress_ip" {
   value = data.azurerm_public_ip.pub.ip_address
 }
-output "ci_client_id" {
+output "ci_user_id" {
   value = azuread_application.app.application_id
 }
-output "ci_client_secret" {
+output "ci_user_password" {
   value     = azuread_application_password.ci-user.value
   sensitive = true
 }
 output "AKS_cluster_name" {
-  value = azurerm_kubernetes_cluster.k8s.name
+  value = azurerm_kubernetes_cluster.k8s.fqdn
 }
 output "ACR_name" {
-  value = azurerm_container_registry.acr.name
+  value = azurerm_container_registry.acr.login_server
 }
-output "resource_group" {
+output "k8s_resource_group" {
   value = azurerm_kubernetes_cluster.k8s.resource_group_name
+}
+output "db_user_password" {
+  value = azurerm_key_vault_secret.db_app_user.value
+  sensitive = true
 }

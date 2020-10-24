@@ -12,10 +12,10 @@ resource "azurerm_postgresql_server" "dbServer" {
   auto_grow_enabled            = true
 
   administrator_login          = "psqladminun"
-  administrator_login_password = azurerm_key_vault_secret.db_info.value
+  administrator_login_password = azurerm_key_vault_secret.db_admin.value
   version                      = "11"
   ssl_enforcement_enabled      = true
-  depends_on = [azurerm_key_vault_secret.db_info]
+  depends_on = [azurerm_key_vault_secret.db_admin]
 }
 
 resource "azurerm_postgresql_database" "db" {

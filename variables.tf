@@ -42,3 +42,6 @@ variable "default_node_pool_vm_size" {
 variable "db_name_prefix" {
   description = "5 or more alphanumeric characters and globally unique"
 }
+variable "db_user" {
+  description = "User for DB access"
+}
