@@ -14,12 +14,12 @@ resource "random_string" "random" {
 provider "kubernetes" {
   alias = "admin"
   load_config_file       = "false"
-  host                   = azurerm_kubernetes_cluster.k8s.kube_admin_config.0.host
-  username               = azurerm_kubernetes_cluster.k8s.kube_admin_config.0.username
-  password               = azurerm_kubernetes_cluster.k8s.kube_admin_config.0.password
-  client_certificate     = base64decode(azurerm_kubernetes_cluster.k8s.kube_admin_config.0.client_certificate)
-  client_key             = base64decode(azurerm_kubernetes_cluster.k8s.kube_admin_config.0.client_key)
-  cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.k8s.kube_admin_config.0.cluster_ca_certificate)
+  host                   = azurerm_kubernetes_cluster.k8s.kube_config.0.host
+  username               = azurerm_kubernetes_cluster.k8s.kube_config.0.username
+  password               = azurerm_kubernetes_cluster.k8s.kube_config.0.password
+  client_certificate     = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate)
+  client_key             = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.client_key)
+  cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.cluster_ca_certificate)
 }
 provider "postgresql" {
   host            = azurerm_postgresql_server.dbServer.fqdn

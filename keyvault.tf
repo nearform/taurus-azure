@@ -52,7 +52,6 @@ resource "azurerm_key_vault_secret" "db_admin" {
   name         = "psqladminun"
   value        = random_password.password[0].result
   key_vault_id = azurerm_key_vault.kv.id
-
   tags = {
     environment = var.environment
   }

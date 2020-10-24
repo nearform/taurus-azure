@@ -46,7 +46,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 resource "kubernetes_service_account" "app" {
   provider = kubernetes.admin
   automount_service_account_token = true
-
+  depends_on = [azurerm_kubernetes_cluster.k8s]
   metadata {
     name = "app"
   }
