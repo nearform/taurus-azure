@@ -22,5 +22,7 @@ output "AKS_cluster_name" {
 }
 output "ACR_name" {
   value = azurerm_container_registry.acr.name
-
+}
+output "resource_group" {
+  value = azurerm_kubernetes_cluster.k8s.resource_group_name
 }
