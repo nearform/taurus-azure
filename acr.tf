@@ -31,6 +31,12 @@ resource "azuread_application_password" "ci-user" {
 }
 
 # Create role assignment for Service Principal
+resource "azurerm_role_assignment" "AcrPush" {
+  scope                = data.azurerm_subscription.main.id
+  role_definition_name = "AcrPush"
+  principal_id         = azuread_service_principal.ci-user.id
+  skip_service_principal_aad_check = true
+}
 resource "azurerm_role_assignment" "contributor" {
   scope                = data.azurerm_subscription.main.id
   role_definition_name = "Contributor"

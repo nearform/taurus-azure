@@ -15,7 +15,7 @@ resource "azurerm_postgresql_server" "dbServer" {
   administrator_login_password = azurerm_key_vault_secret.db_info.value
   version                      = "11"
   ssl_enforcement_enabled      = true
-  depends_on = [azurerm_key_vault_secret.db_info.value]
+  depends_on = [azurerm_key_vault_secret.db_info]
 }
 
 resource "azurerm_postgresql_database" "db" {
