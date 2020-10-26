@@ -50,15 +50,27 @@ resource "kubernetes_service_account" "app" {
   metadata {
     name = "app"
   }
+  secret {
+    name = kubernetes_secret.secret.metadata.0.name
+  }
 }
 
 # Add the Secret, that holds the Service Account Token as a data source
-data "kubernetes_secret" "secret" {
+resource "kubernetes_secret" "secret" {
   provider = kubernetes.admin
 
   metadata {
-    name = kubernetes_service_account.app.default_secret_name
+    name = "app-secret"
   }
+  data = {
+    PGHOST                   = azurerm_postgresql_server.dbServer.fqdn
+    PGPORT                   = "5432"
+    PGDATABASE               = azurerm_postgresql_database.db.name
+    PGUSER                   = azurerm_key_vault_secret.db_admin.name
+    PGPASSWORD               = azurerm_key_vault_secret.db_admin.value
+  }
+
+  type = "Opaque"
 }
 
 # Create a new Role for the Service Account
@@ -93,8 +105,4 @@ resource "kubernetes_cluster_role_binding" "app-user" {
     kind      = "ServiceAccount"
     name      = kubernetes_service_account.app.metadata[0].name
   }
-}
-data "azurerm_public_ip" "pub" {
-  name                = reverse(split("/", tolist(azurerm_kubernetes_cluster.k8s.network_profile.0.load_balancer_profile.0.effective_outbound_ips)[0]))[0]
-  resource_group_name = azurerm_kubernetes_cluster.k8s.node_resource_group
 }

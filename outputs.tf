@@ -7,9 +7,6 @@ output "cluster_password" {
 output "host" {
     value = azurerm_kubernetes_cluster.k8s.kube_config.0.host
 }
-output "cluster_egress_ip" {
-  value = data.azurerm_public_ip.pub.ip_address
-}
 output "ci_user_id" {
   value = azuread_application.app.application_id
 }
@@ -26,7 +23,13 @@ output "ACR_name" {
 output "k8s_resource_group" {
   value = azurerm_kubernetes_cluster.k8s.resource_group_name
 }
-output "db_user_password" {
-  value = azurerm_key_vault_secret.db_app_user.value
+output "db_admin_password" {
+  value = azurerm_key_vault_secret.db_admin.value
   sensitive = true
+}
+output "psql_private_endpoint" {
+  value = azurerm_private_endpoint.endpoint.private_service_connection[0].private_ip_address
+}
+output "tenant_ID" {
+  value = data.azurerm_subscription.main.tenant_id
 }

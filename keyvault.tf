@@ -56,12 +56,3 @@ resource "azurerm_key_vault_secret" "db_admin" {
     environment = var.environment
   }
 }
-resource "azurerm_key_vault_secret" "db_app_user" {
-  name         = var.db_user
-  value        = random_password.password[1].result
-  key_vault_id = azurerm_key_vault.kv.id
-
-  tags = {
-    environment = var.environment
-  }
-}
