@@ -33,3 +33,6 @@ output "psql_private_endpoint" {
 output "tenant_ID" {
   value = data.azurerm_subscription.main.tenant_id
 }
+output "sub_id" {
+  value = data.azurerm_subscription.main.subscription_id
+}
