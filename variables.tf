@@ -16,8 +16,6 @@ variable "agent_count" {
 variable "ssh_public_key" {
     default = "id_rsa.pub"
 }
-variable "aks_dns_prefix" {
-}
 variable cluster_name {
 }
 variable acr_name_prefix {
@@ -25,9 +23,6 @@ variable acr_name_prefix {
 }
 variable log_analytics_workspace_name {
     default = "testLogAnalyticsWorkspaceName"
-}
-# refer https://azure.microsoft.com/global-infrastructure/services/?products=monitor for log analytics available regions
-variable log_analytics_workspace_location {
 }
 # refer https://azure.microsoft.com/pricing/details/monitor/ for log analytics pricing
 variable log_analytics_workspace_sku {

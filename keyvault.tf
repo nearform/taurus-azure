@@ -9,6 +9,7 @@ resource "random_id" "server" {
   byte_length = 8
 }
 resource "random_password" "password" {
+  count = 2
   length = 16
   special = true
   override_special = "_%@"
@@ -47,11 +48,10 @@ resource "azurerm_key_vault" "kv" {
   }
 }
 
-resource "azurerm_key_vault_secret" "db_info" {
+resource "azurerm_key_vault_secret" "db_admin" {
   name         = "psqladminun"
-  value        = random_password.password.result
+  value        = random_password.password[0].result
   key_vault_id = azurerm_key_vault.kv.id
-
   tags = {
     environment = var.environment
   }
