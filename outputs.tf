@@ -15,7 +15,7 @@ output "ci_user_password" {
   sensitive = true
 }
 output "AKS_cluster_name" {
-  value = azurerm_kubernetes_cluster.k8s.fqdn
+  value = azurerm_kubernetes_cluster.k8s.name
 }
 output "ACR_name" {
   value = azurerm_container_registry.acr.login_server
@@ -35,4 +35,7 @@ output "tenant_ID" {
 }
 output "sub_id" {
   value = data.azurerm_subscription.main.subscription_id
+}
+output "ACR_resource_group" {
+  value = azurerm_container_registry.acr.resource_group_name
 }
