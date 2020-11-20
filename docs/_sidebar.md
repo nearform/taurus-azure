@@ -1,5 +1,0 @@
-- [Home](/)
-  - [Taurus Overview](?id=Taurus-Overview)
-- [Quick Start Guide](/quick-start/)
-- [Install Kubernetes Add-Ons](/helm/)
-- [Contribute to Taurus](/contributing/)
